@@ -15,11 +15,11 @@ public enum HandType {
         if (isOnePair(cards)) currentEval = OnePair;
         if (isTwoPair(cards)) currentEval = TwoPair;
         if (isThreeOfAKind(cards)) currentEval = ThreeOfAKind;
-        if (isStraight(cards)) currentEval = Straight;
-        if (isFlush(cards)) currentEval = Flush;
-        if (isFullHouse(cards)) currentEval = FullHouse;
+        //if (isStraight(cards)) currentEval = Straight;
+       // if (isFlush(cards)) currentEval = Flush;
+       // if (isFullHouse(cards)) currentEval = FullHouse;
      // if (isFourOfAKind(cards)) currentEval = FourOfAKind;
-        if (isStraightFlush(cards)) currentEval = StraightFlush;
+        //if (isStraightFlush(cards)) currentEval = StraightFlush;
      
         // Royal Flush?
         
@@ -56,16 +56,23 @@ public enum HandType {
     }
     
     public static boolean isThreeOfAKind(ArrayList<Card> cards) {
-        boolean found = false;
-        for (int i = 0; i < cards.size() - 1 && !found; i++) {
-            for (int j = i+1; j < cards.size() && !found; j++) {
-            	for (int k =j +1; k < cards.size() && !found; k++) {
-            		if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank())
-            			found = true;
+        boolean foundOnePair = false;
+        boolean foundThreeOfKind = false;
+        for (int i = 0; i < cards.size(); i++) {
+            for (int j = i+1; j < cards.size(); j++) {
+            		if (cards.get(i).getRank() == cards.get(j).getRank())
+            		{
+            			if (foundOnePair) {
+            				foundThreeOfKind = true;
+            			}
+            			else {
+            				foundOnePair = true;
+            			}
             		}
             	}
-            }
-        return found;
+        }
+            
+        return foundThreeOfKind;
     }
     
     public static boolean isStraight(ArrayList<Card> cards) {
@@ -78,25 +85,23 @@ public enum HandType {
         return false;
     }
     
-    public static boolean isFullHouse(ArrayList<Card> cards) {
+    /*public static boolean isFullHouse(ArrayList<Card> cards) {
     	boolean foundThree = false;
         boolean foundPair = false;
         boolean found = false;
         
         /* searches for 3 of a kind
          * 
-       */
+       
         for (int i = 0; i < cards.size() - 1 && !foundThree; i++) {
             for (int j = i+1; j < cards.size() && !foundThree; j++) {
-            	for (int k =j +1; k < cards.size() && !foundThree; k++) {
-            		if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank())
+            		if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(j).getRank())
             			foundThree = true; 
-            	}
             }
         }
     /*        	
     //searching for one pair using onePair method
-       */ 
+       
             		for (int x = 0; x < cards.size() -1 && !foundPair; x++) {
             	            for (int y = x+1; y < cards.size() && !foundPair; y++) {
             	                if (cards.get(x).getRank() == cards.get(y).getRank()) {
