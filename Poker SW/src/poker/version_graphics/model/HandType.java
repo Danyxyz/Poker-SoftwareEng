@@ -81,9 +81,17 @@ public enum HandType {
     }
     
     public static boolean isFlush(ArrayList<Card> cards) {
-        // TODO        
-        return false;
+    	//for (int i = 0; i < cards.size() -1; i++) {
+    	int i = 0;
+    	if (cards.get(i).getSuit() == cards.get(i+1).getSuit() && cards.get(i).getSuit() == cards.get(i+2).getSuit() && 
+    			cards.get(i).getSuit() == cards.get(i+3).getSuit() && cards.get(i).getSuit() == cards.get(i+4).getSuit()) {
+    		return true;
+    	}
+    		
+    	
+    	return false;
     }
+    
     
     /*public static boolean isFullHouse(ArrayList<Card> cards) {
     	boolean foundThree = false;
