@@ -14,8 +14,9 @@
 
 .player {
 	-fx-padding: 5.0px;
-    -fx-border-color: black;
+    -fx-border-color: FFFFFF;
     -fx-border-width: 2.0px;
+    
 }
 
 .card {
@@ -30,4 +31,11 @@
     -fx-min-height: 80;
     -fx-pref-height: 162;
     -fx-max-height: 800;
+}
+#rootStyle{
+	-fx-spacing: 15.0px;
+    -fx-padding: 5.0px;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 2.0px;
 }

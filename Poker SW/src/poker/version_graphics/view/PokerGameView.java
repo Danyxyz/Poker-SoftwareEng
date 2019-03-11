@@ -2,6 +2,7 @@ package poker.version_graphics.view;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -13,8 +14,9 @@ import poker.version_graphics.model.PokerGameModel;
 public class PokerGameView {
 	private HBox players;
 	private ControlArea controls;
-	
 	private PokerGameModel model;
+	private Label spacelbl = new Label ("Space");
+	private Label spacelbl2 = new Label ("Space");
 	
 	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
@@ -35,6 +37,9 @@ public class PokerGameView {
 		BorderPane root = new BorderPane();
 		root.setCenter(players);
 		root.setBottom(controls);
+		root.setLeft(spacelbl);
+		root.setRight(spacelbl2);
+		root.setId("rootStyle");
 		
 		// Disallow resizing - which is difficult to get right with images
 		stage.setResizable(false);

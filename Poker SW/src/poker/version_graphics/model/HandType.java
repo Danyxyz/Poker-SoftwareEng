@@ -1,6 +1,7 @@
 package poker.version_graphics.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public enum HandType {
     HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush;
@@ -27,7 +28,7 @@ public enum HandType {
     }
     
     public static boolean isOnePair(ArrayList<Card> cards) {
-        boolean found = false;
+    	boolean found = false;
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
             for (int j = i+1; j < cards.size() && !found; j++) {
                 if (cards.get(i).getRank() == cards.get(j).getRank()) found = true;
@@ -76,7 +77,15 @@ public enum HandType {
     }
     
     public static boolean isStraight(ArrayList<Card> cards) {
-        // TODO        
+    ArrayList<Card> clonedCards = (ArrayList<Card>) cards.clone();
+    	for (int i = 0; i < cards.size(); i++) {
+    	
+    		if (cards.get(i).getOrdinal() < cards.get(i+1).getOrdinal()) {
+    			   			
+    		} else {
+    			
+    		}
+    	}
         return false;
     }
     

@@ -58,8 +58,13 @@ public class Card {
         return rank;
     }
     
+    public int getOrdinal() {
+    	return this.getOrdinal();
+    }
+    
     @Override
     public String toString() {
         return rank.toString() + suit.toString();
     }
+
 }
