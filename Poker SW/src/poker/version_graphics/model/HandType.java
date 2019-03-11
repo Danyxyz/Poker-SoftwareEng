@@ -16,7 +16,7 @@ public enum HandType {
         if (isTwoPair(cards)) currentEval = TwoPair;
         if (isThreeOfAKind(cards)) currentEval = ThreeOfAKind;
         //if (isStraight(cards)) currentEval = Straight;
-       // if (isFlush(cards)) currentEval = Flush;
+       if (isFlush(cards)) currentEval = Flush;
        // if (isFullHouse(cards)) currentEval = FullHouse;
      // if (isFourOfAKind(cards)) currentEval = FourOfAKind;
         //if (isStraightFlush(cards)) currentEval = StraightFlush;
@@ -80,17 +80,23 @@ public enum HandType {
         return false;
     }
     
+    // not tested
     public static boolean isFlush(ArrayList<Card> cards) {
-    	//for (int i = 0; i < cards.size() -1; i++) {
-    	int i = 0;
-    	if (cards.get(i).getSuit() == cards.get(i+1).getSuit() && cards.get(i).getSuit() == cards.get(i+2).getSuit() && 
-    			cards.get(i).getSuit() == cards.get(i+3).getSuit() && cards.get(i).getSuit() == cards.get(i+4).getSuit()) {
-    		return true;
-    	}
-    		
-    	
-    	return false;
-    }
+        int i = 0;
+        if (cards.get(i).getSuit() == cards.get(i+1).getSuit() && cards.get(i).getSuit() == cards.get(i+2).getSuit() && 
+         			cards.get(i).getSuit() == cards.get(i+3).getSuit() && cards.get(i).getSuit() == cards.get(i+4).getSuit()) {
+         		return true;
+         	}
+         	return false;
+         }
+       
+    	/*	boolean flushFound = false;
+    	for (int i = 0; i < cards.size(); i++) {
+    		if (cards.get(0).getSuit() == cards.get(i+1).getSuit())
+    			
+    		flushFound = true;	
+    		*/
+   
     
     
     /*public static boolean isFullHouse(ArrayList<Card> cards) {
