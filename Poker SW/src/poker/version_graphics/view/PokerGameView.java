@@ -59,4 +59,7 @@ public class PokerGameView {
 	public Button getDealButton() {
 		return controls.btnDeal;
 	}
+	public Button getRankingButton() {
+		return controls.btnRanking;
+	}
 }

@@ -9,6 +9,7 @@ import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
 import poker.version_graphics.view.PlayerPane;
 import poker.version_graphics.view.PokerGameView;
+import poker.version_graphics.view.RankingWindow;
 
 public class PokerGameController {
 	private PokerGameModel model;
@@ -20,6 +21,7 @@ public class PokerGameController {
 		
 		view.getShuffleButton().setOnAction( e -> shuffle() );
 		view.getDealButton().setOnAction( e -> deal() );
+		view.getRankingButton().setOnAction(e -> RankingWindow.display("Ranking Liste"));
 	}
 	
 
