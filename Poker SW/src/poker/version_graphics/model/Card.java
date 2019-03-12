@@ -1,5 +1,6 @@
 package poker.version_graphics.model;
 
+
 public class Card {
     public enum Suit { Clubs, Diamonds, Hearts, Spades;
         @Override
@@ -59,12 +60,14 @@ public class Card {
     }
     
     public int getOrdinal() {
-    	return this.getOrdinal();
+    	return rank.ordinal()+2;
     }
     
     @Override
     public String toString() {
         return rank.toString() + suit.toString();
     }
+
+
 
 }
