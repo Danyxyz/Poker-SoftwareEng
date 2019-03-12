@@ -1,8 +1,11 @@
 package poker.version_graphics.view;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import poker.version_graphics.model.Card;
 
 public class CardLabel extends Label {

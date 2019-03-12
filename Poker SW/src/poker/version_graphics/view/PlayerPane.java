@@ -1,9 +1,21 @@
 package poker.version_graphics.view;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcTo;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.PathElement;
+import javafx.util.Duration;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.HandType;
 import poker.version_graphics.model.Player;
@@ -43,10 +55,22 @@ public class PlayerPane extends VBox {
     		CardLabel cl = (CardLabel) hboxCards.getChildren().get(i);
     		cl.setCard(card);
     		HandType evaluation = player.evaluateHand();
-    		if (evaluation != null)
+    		    		if (evaluation != null)
     			lblEvaluation.setText(evaluation.toString());
     		else
     			lblEvaluation.setText("--");
+    		    	
+    		    		//PathElement pe1 = new MoveTo(0, 500); // Start position
+    		    		//PathElement pe2 = new LineTo(200, 200);
+    		   //	PathElement pe3 = new ArcTo(50, 100, 0, 300, 450, false, false);
+    		    		//Path path = new Path();
+    		    		//path.getElements().add(pe1);
+    		    		//path.getElements().add(pe2);
+    		    		//path.getElements().add(pe3);
+    		    		//PathTransition move = new PathTransition(Duration.millis(4000), path, cl);
+    		   //	move.setAutoReverse(true);
+    		    		//move.setCycleCount(Animation.INDEFINITE);
+    		    		//move.play();
     	}
     }
 }
