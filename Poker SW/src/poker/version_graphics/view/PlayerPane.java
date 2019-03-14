@@ -20,6 +20,7 @@ import poker.version_graphics.model.Card;
 import poker.version_graphics.model.HandType;
 import poker.version_graphics.model.Player;
 
+
 public class PlayerPane extends VBox {
     private Label lblName = new Label();
     private HBox hboxCards = new HBox();
