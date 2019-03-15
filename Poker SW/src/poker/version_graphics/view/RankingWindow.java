@@ -39,6 +39,7 @@ public class RankingWindow {
 		BorderPane layout = new BorderPane();
 		layout.setCenter(label);
 		layout.setBottom(exitbtn);
+		layout.setId("rankingWindow");
 		
 		
 		Scene scene = new Scene (layout);

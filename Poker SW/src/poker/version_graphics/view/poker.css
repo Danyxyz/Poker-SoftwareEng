@@ -8,23 +8,24 @@
 #controlArea {
     -fx-spacing: 15.0px;
     -fx-padding: 5.0px;
-    -fx-border-color: black;
+    -fx-border-color: cornflowerblue;
     -fx-border-width: 2.0px;
-}
+    -fx-font-size: 15px;
+   }
 
 .player {
 	-fx-padding: 5.0px;
-    -fx-border-color: FFFFFF;
     -fx-border-width: 2.0px;
-    
+    -fx-font-size: 18px;
+    -fx-font-weight:bold;
 }
 
 .card {
   -fx-font-size: 18px;
-	-fx-padding: 2.0px;
+  	-fx-padding: 2.0px;
     -fx-border-color: black;
     -fx-border-width: 1.0px;
-	-fx-background-color: lemonchiffon;
+	-fx-background-color: white;
     -fx-min-width: 50;
     -fx-pref-width: 111;
     -fx-max-width: 500;
@@ -35,7 +36,21 @@
 #rootStyle{
 	-fx-spacing: 15.0px;
     -fx-padding: 5.0px;
-    -fx-background-color: white;
+    -fx-background-color: cornflowerblue;
     -fx-border-color: black;
     -fx-border-width: 2.0px;
+}
+#rankingWindow{
+	-fx-spacing: 15.0px;
+    -fx-padding: 5.0px;
+    -fx-background-color: cornflowerblue;
+    -fx-border-color: black;
+    -fx-border-width: 2.0px;
+}
+.button{
+	-fx-font-size:15px;
+	-fx-background-radius:15px;
+	-fx-background-color:darkmagenta;
+	-fx-text-fill:white;
+	
 }
