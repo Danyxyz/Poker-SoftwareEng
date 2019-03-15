@@ -20,8 +20,8 @@ public enum HandType {
         if (isThreeOfAKind(cards)) currentEval = ThreeOfAKind;
         if (isStraight(cards)) currentEval = Straight;
         if (isFlush(cards)) currentEval = Flush;
-        if (isFullHouse(cards)) currentEval = FullHouse;
-     //   if (isFourOfAKind(cards)) currentEval = FourOfAKind;
+      //  if (isFullHouse(cards)) currentEval = FullHouse;
+        if (isFourOfAKind(cards)) currentEval = FourOfAKind;
         //if (isStraightFlush(cards)) currentEval = StraightFlush;
      
         // Royal Flush?
@@ -105,17 +105,7 @@ public enum HandType {
          	return foundFlush;
     }
 
-       
-  /* 	boolean flushFound = false;
-    	for (int i = 0; i < cards.size(); i++) {
-    		if (cards.get(0).getSuit() == cards.get(i+1).getSuit())
-    			
-    		flushFound = true;	
-    */		
-   
-    
-    
-    	public static boolean isFullHouse(ArrayList<Card> cards) {
+       public static boolean isFullHouse(ArrayList<Card> cards) {
     			boolean foundOP = false;
     		ArrayList<Card> clonedCards = (ArrayList<Card>) cards.clone();
     	
@@ -123,7 +113,7 @@ public enum HandType {
                 for (int j = i+1; j < cards.size() && !foundOP; j++) {
                     if (cards.get(i).getRank() == cards.get(j).getRank()) {
                     foundOP = true;
-                    clonedCards.removeAll(i, j);
+                    clonedCards.remove(i);
                     clonedCards.remove(j);
                 }
                 }            	
@@ -137,28 +127,31 @@ public enum HandType {
     
     public static boolean isFourOfAKind(ArrayList<Card> cards) {
     	boolean foundFour = false;
-    	int count = 1; // increments if same card is found
     	
+    	// sortieren, gleiche karte entweder am Anfang oder Schluss
     	// stops when 4 same cards are found 
-    //	while (count < 5) {  
     	
-    	for (int i = 0; i < cards.size() - 3; i++) {
-    		if (cards.get(i).getOrdinal() == cards.get(i+1).getOrdinal()) {
-    			count++;
-    		}
-    		if (cards.get(i).getOrdinal() == cards.get(i+2).getOrdinal()) {
-    			count++;
-    		}
+    	ArrayList<Card> clonedCards = (ArrayList<Card>) cards.clone();
+        
+    	Collections.sort(clonedCards, new Comparator <Card>() {
+    		@Override
+    		public int compare(Card card1, Card card2) {
+    			return card1.getOrdinal() - card2.getOrdinal();
     			
-    		if (cards.get(i).getOrdinal() == cards.get(i+3).getOrdinal()) {
-    			count++;
     		}
-    	}
+    	});
     	
-    		if (count == 4)
-    			foundFour = true;
-    	return foundFour;
+    	if (clonedCards.get(0).getRank() == clonedCards.get(3).getRank()) {
+    		foundFour = true;
     	}
+    	if (clonedCards.get(1).getRank() == clonedCards.get(4).getRank()) {
+    		foundFour = true;
+    	}
+    		   	
+    	return foundFour;
+    }
+    		
+    	
    
     public static boolean isStraightFlush(ArrayList<Card> cards) {
                 return isFlush(cards) && isStraight(cards);
