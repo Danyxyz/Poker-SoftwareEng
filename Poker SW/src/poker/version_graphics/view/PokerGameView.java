@@ -4,12 +4,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.PathElement;
 import javafx.stage.Stage;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.PokerGameModel;
@@ -20,7 +25,7 @@ public class PokerGameView {
 	private PokerGameModel model;
 	private Label productionlbl = new Label ("Daniel & Kevin productions");
 	private Label deckPlace = new Label ("Deckplace");
-	private Region rg = new Region();
+	private Region rg = new Region(); 
 	
 	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
@@ -41,18 +46,24 @@ public class PokerGameView {
 		
 		productionlbl.setPrefSize(100, 100);
 		productionlbl.setAlignment(Pos.CENTER);
-		productionlbl.setTextFill(Color.YELLOW);
 		rg.setPrefSize(180, 100);
 		
 		// Put players and controls into a BorderPane
 		
 		BorderPane root = new BorderPane();
+		VBox vb = new VBox();
 		root.setTop(players);
-		root.setCenter(productionlbl);
+		root.setCenter(vb);
 		root.setLeft(deckPlace);
 		root.setRight(rg);
 		root.setBottom(controls);
 		root.setId("rootStyle");
+		
+		
+		// show Pokerchips on screen
+		ImageView imageView = new ImageView();
+		imageView.setImage(new Image("poker/images/ChipTest.png"));
+		vb.getChildren().addAll(productionlbl, imageView);
 		
 		// Disallow resizing - which is difficult to get right with images
 		stage.setResizable(false);
