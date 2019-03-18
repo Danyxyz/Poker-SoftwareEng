@@ -28,7 +28,7 @@ public class ControlArea extends BorderPane{
     	this.setCenter(controlBox);
     
 
-        //HBox.setHgrow(spacer, Priority.ALWAYS); // Use region to absorb resizing
+        HBox.setHgrow(spacer, Priority.ALWAYS); // Use region to absorb resizing
         this.setId("controlArea"); // Unique ID in the CSS
     }
     

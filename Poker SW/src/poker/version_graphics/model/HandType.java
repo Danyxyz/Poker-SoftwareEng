@@ -22,7 +22,7 @@ public enum HandType {
         if (isFlush(cards)) currentEval = Flush;
       //if (isFullHouse(cards)) currentEval = FullHouse;
         if (isFourOfAKind(cards)) currentEval = FourOfAKind;
-      //if (isStraightFlush(cards)) currentEval = StraightFlush;
+        if (isStraightFlush(cards)) currentEval = StraightFlush;
      
         // Royal Flush?
         
@@ -126,8 +126,6 @@ public enum HandType {
        
     public static boolean isFourOfAKind(ArrayList<Card> cards) {
     	boolean foundFour = false;
-    	
-    	// sortieren, gleiche karte entweder am Anfang oder Schluss
     	
     	ArrayList<Card> clonedCards = (ArrayList<Card>) cards.clone();
         

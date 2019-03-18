@@ -23,7 +23,7 @@ public class PokerGameView {
 	private HBox players;
 	private ControlArea controls;
 	private PokerGameModel model;
-	private Label productionlbl = new Label ("Daniel & Kevin productions");
+	private Label productionlbl = new Label ("Daniel & Kevin");
 	private Label deckPlace = new Label ("Deckplace");
 	private Region rg = new Region(); 
 	
@@ -45,25 +45,30 @@ public class PokerGameView {
 		// Resizing the labels, correct the position of the label/region
 		
 		productionlbl.setPrefSize(100, 100);
-		productionlbl.setAlignment(Pos.CENTER);
+	//	productionlbl.setTextFill(Color.GOLD);
 		rg.setPrefSize(180, 100);
+
+	
+		// show Pokerchips on screen
+		ImageView imageView = new ImageView();
+		imageView.setImage(new Image("poker/images/ChipTest.png"));	
+		imageView.setLayoutY(300);
 		
+			
 		// Put players and controls into a BorderPane
 		
 		BorderPane root = new BorderPane();
-		VBox vb = new VBox();
 		root.setTop(players);
-		root.setCenter(vb);
+		root.setCenter(imageView);
 		root.setLeft(deckPlace);
-		root.setRight(rg);
+		root.setRight(productionlbl);
+		root.setAlignment(productionlbl, Pos.BOTTOM_RIGHT);
 		root.setBottom(controls);
 		root.setId("rootStyle");
 		
 		
-		// show Pokerchips on screen
-		ImageView imageView = new ImageView();
-		imageView.setImage(new Image("poker/images/ChipTest.png"));
-		vb.getChildren().addAll(productionlbl, imageView);
+
+	
 		
 		// Disallow resizing - which is difficult to get right with images
 		stage.setResizable(false);
@@ -76,6 +81,9 @@ public class PokerGameView {
         stage.setScene(scene);
         stage.show();		
 	}
+	
+	
+	
 	
 	public PlayerPane getPlayerPane(int i) {
 		return (PlayerPane) players.getChildren().get(i);
