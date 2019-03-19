@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public enum HandType {
-    HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush;
+    HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush, RoyalFlush;
     
     /**
      * Determine the value of this hand. Note that this does not
@@ -20,16 +20,18 @@ public enum HandType {
         if (isThreeOfAKind(cards)) currentEval = ThreeOfAKind;
         if (isStraight(cards)) currentEval = Straight;
         if (isFlush(cards)) currentEval = Flush;
-      //if (isFullHouse(cards)) currentEval = FullHouse;
+        if (isFullHouse(cards)) currentEval = FullHouse;
         if (isFourOfAKind(cards)) currentEval = FourOfAKind;
         if (isStraightFlush(cards)) currentEval = StraightFlush;
+        if (isRoyalFlush(cards)) currentEval = RoyalFlush;
      
         // Royal Flush?
         
         return currentEval;
     }
     
-    public static boolean isOnePair(ArrayList<Card> cards) {
+
+	public static boolean isOnePair(ArrayList<Card> cards) {
     	boolean found = false;
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
             for (int j = i+1; j < cards.size() && !found; j++) {
@@ -64,8 +66,7 @@ public enum HandType {
             for (int j = i+1; j <= cards.size() - 1 && !foundThree; j++) {
             	for (int k =j +1; k <= cards.size() -1 && !foundThree; k++) {
             			if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank())
-            					foundThree = true;
-            			
+            					foundThree = true;            			
             	}
             }
     	}
@@ -88,13 +89,22 @@ public enum HandType {
     	if (clonedCards.get(0).getOrdinal() == clonedCards.get(1).getOrdinal()-1
     		&& clonedCards.get(1).getOrdinal() == clonedCards.get(2).getOrdinal()-1
 			&& clonedCards.get(2).getOrdinal() == clonedCards.get(3).getOrdinal()-1
-			&& clonedCards.get(3).getOrdinal() == clonedCards.get(4).getOrdinal()-1)
-			straightFound = true;
+			&& clonedCards.get(3).getOrdinal() == clonedCards.get(4).getOrdinal()-1) 
+    	{
+    		straightFound = true;
+    	}else if (clonedCards.get(4).getOrdinal()==12 && 
+    			clonedCards.get(0).getOrdinal()==0 && 
+    			clonedCards.get(1).getOrdinal()==1 &&
+    			clonedCards.get(2).getOrdinal()==2 && 
+    			clonedCards.get(3).getOrdinal()== 3) {
+    		straightFound = true;
+    	}
+			
 		
 		return straightFound;
     }
    
-    // not tested,
+    
     public static boolean isFlush(ArrayList<Card> cards) {
     	boolean foundFlush = false;
         if (cards.get(0).getSuit() == cards.get(1).getSuit() && cards.get(0).getSuit() == cards.get(2).getSuit() && 
@@ -114,8 +124,8 @@ public enum HandType {
                 for (int j = i+1; j < cards.size() && !foundOP; j++) {
                     if (cards.get(i).getRank() == cards.get(j).getRank()) {
                     foundOP = true;
-                    clonedCards.remove(i);
                     clonedCards.remove(j);
+                    clonedCards.remove(i);
                 }
                 }            	
             }
@@ -133,7 +143,6 @@ public enum HandType {
     		@Override
     		public int compare(Card card1, Card card2) {
     			return card1.getOrdinal() - card2.getOrdinal();
-    			
     		}
     	});
     	
@@ -151,5 +160,15 @@ public enum HandType {
    
     public static boolean isStraightFlush(ArrayList<Card> cards) {
                 return isFlush(cards) && isStraight(cards);
+    }
+    
+    
+    private static boolean isRoyalFlush(ArrayList<Card> cards) {
+    	boolean royalFound = false;
+    	
+    	if (isFlush(cards) && isStraight(cards) == true && cards.get(0).getOrdinal() == 9 && cards.get(4).getOrdinal() == 12) {
+    		royalFound = true;
+    	}
+    	return royalFound;
     }
 }

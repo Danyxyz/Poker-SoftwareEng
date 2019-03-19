@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
@@ -42,6 +43,7 @@ public class PlayerPane extends VBox {
         // Add CardLabels for the cards
         for (int i = 0; i < 5; i++) {
             Label lblCard = new CardLabel();
+            hboxCards.setSpacing(5);
             hboxCards.getChildren().addAll(lblCard);
         }
     }

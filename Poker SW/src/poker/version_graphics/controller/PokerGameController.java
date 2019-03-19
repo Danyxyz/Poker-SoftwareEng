@@ -20,7 +20,7 @@ public class PokerGameController {
 		this.view = view;
 		
 		view.getShuffleButton().setOnAction( e -> shuffle() );
-		view.getDealButton().setOnAction( e -> deal() );
+		view.getDealButton().setOnAction( e -> deal());
 		view.getRankingButton().setOnAction(e -> RankingWindow.display("Ranking Liste"));
 	}
 	

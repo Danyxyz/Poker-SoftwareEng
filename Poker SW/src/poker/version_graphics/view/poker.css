@@ -11,13 +11,14 @@
 #controlArea {
     -fx-spacing: 15.0px;
     -fx-padding: 5.0px;
-    -fx-border-color: #a52a2a;
+    -fx-border-color: #005800;
     -fx-border-width: 2.0px;
     -fx-font-size: 15px;
    }
 
 .player {
 	-fx-padding: 5.0px;
+	-fx-border-color:#C5B358;
     -fx-border-width: 2.0px;
     -fx-font-size: 18px;
     -fx-font-weight:bold;
@@ -27,9 +28,22 @@
 .card {
   -fx-font-size: 18px;
   	-fx-padding: 2.0px;
-    -fx-border-color: black;
-    -fx-border-width: 1.0px;
+    -fx-border-color: white;
+    -fx-border-width: 2.0px;
 	-fx-background-color: white;
+    -fx-min-width: 50;
+    -fx-pref-width: 111;
+    -fx-max-width: 500;
+    -fx-min-height: 80;
+    -fx-pref-height: 162;
+    -fx-max-height: 800;
+}
+.card2 {
+  -fx-font-size: 18px;
+  	-fx-padding: 2.0px;
+    -fx-border-color: red;
+    -fx-border-width: 2.0px;
+	-fx-background-color: gold;
     -fx-min-width: 50;
     -fx-pref-width: 111;
     -fx-max-width: 500;
@@ -40,9 +54,8 @@
 #rootStyle{
 	-fx-spacing: 15.0px;
     -fx-padding: 5.0px;
-    -fx-background-color: #a52a2a;
-    -fx-border-color: white;
-    -fx-border-width: 2.0px;
+    -fx-background-color: #005800;
+    
     
 }
 #rankingWindow{

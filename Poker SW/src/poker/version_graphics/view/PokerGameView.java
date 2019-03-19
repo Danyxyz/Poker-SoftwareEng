@@ -65,9 +65,6 @@ public class PokerGameView {
 		root.setAlignment(productionlbl, Pos.BOTTOM_RIGHT);
 		root.setBottom(controls);
 		root.setId("rootStyle");
-		
-		
-
 	
 		
 		// Disallow resizing - which is difficult to get right with images
@@ -81,8 +78,6 @@ public class PokerGameView {
         stage.setScene(scene);
         stage.show();		
 	}
-	
-	
 	
 	
 	public PlayerPane getPlayerPane(int i) {
