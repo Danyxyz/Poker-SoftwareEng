@@ -13,18 +13,20 @@ public class ControlArea extends BorderPane{
     private Region spacer = new Region(); // Empty spacer
     Button btnShuffle = new Button("Shuffle");
     Button btnDeal = new Button("Deal");
-    Button btnRanking = new Button ("Ranking");
+    Button btnExit = new Button ("Exit");
+    Button btnFs = new Button("Fullscreen");
 
     public ControlArea() {
     	super(); // Always call super-constructor first !!
     	
     	HBox controlBox = new HBox();
-    	btnRanking.setPrefSize(75, 30);
-    	btnDeal.setPrefSize(75, 30);
-    	btnShuffle.setPrefSize(75, 30);
+    	btnExit.setPrefSize(100, 50);
+    	btnDeal.setPrefSize(100, 50);
+    	btnShuffle.setPrefSize(100, 50);
+    	btnFs.setPrefSize(150,50);
     	spacer.setPrefWidth(250);
-    	controlBox.getChildren().addAll(lblDeck, spacer, btnRanking, btnShuffle, btnDeal);
-    	
+    	controlBox.getChildren().addAll(lblDeck, spacer, btnExit, btnFs, btnShuffle, btnDeal);
+    	controlBox.setSpacing(10);
     	this.setCenter(controlBox);
     
 

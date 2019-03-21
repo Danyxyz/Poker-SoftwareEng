@@ -7,6 +7,7 @@ import poker.version_graphics.model.Card;
 import poker.version_graphics.model.DeckOfCards;
 import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
+import poker.version_graphics.view.CardLabel;
 import poker.version_graphics.view.PlayerPane;
 import poker.version_graphics.view.PokerGameView;
 import poker.version_graphics.view.RankingWindow;
@@ -14,6 +15,7 @@ import poker.version_graphics.view.RankingWindow;
 public class PokerGameController {
 	private PokerGameModel model;
 	private PokerGameView view;
+	private CardLabel lbl;
 	
 	public PokerGameController(PokerGameModel model, PokerGameView view) {
 		this.model = model;
@@ -21,7 +23,8 @@ public class PokerGameController {
 		
 		view.getShuffleButton().setOnAction( e -> shuffle() );
 		view.getDealButton().setOnAction( e -> deal());
-		view.getRankingButton().setOnAction(e -> RankingWindow.display("Ranking Liste"));
+		view.getExitButton().setOnAction(e -> System.exit(0));
+		view.getFSButton().setOnAction(e -> view.getStage().setFullScreen(true));
 	}
 	
 

@@ -28,7 +28,7 @@ public class PlayerPane extends VBox {
     private Label lblEvaluation = new Label("--");
     private Label spacelbl = new Label("");
     private Label winlbl = new Label("Games won: ");
-    private Label winevualate = new Label("-");
+ //   private Label winevualate = new Label("-");
     
     // Link to player object
     private Player player;
@@ -38,7 +38,9 @@ public class PlayerPane extends VBox {
         this.getStyleClass().add("player"); // CSS style class
         lblName.setPrefSize(50, 50);
         // Add child nodes, also added the winlabel and the winresultlabel
-        this.getChildren().addAll(lblName, hboxCards,lblEvaluation, winlbl, winevualate);
+        HBox hb = new HBox();
+        hb.getChildren().add(winlbl);
+        this.getChildren().addAll(lblName, hboxCards,lblEvaluation, hb);
         
         // Add CardLabels for the cards
         for (int i = 0; i < 5; i++) {

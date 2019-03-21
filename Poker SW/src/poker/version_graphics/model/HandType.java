@@ -24,8 +24,9 @@ public enum HandType {
         if (isFourOfAKind(cards)) currentEval = FourOfAKind;
         if (isStraightFlush(cards)) currentEval = StraightFlush;
         if (isRoyalFlush(cards)) currentEval = RoyalFlush;
+        
      
-        // Royal Flush?
+        
         
         return currentEval;
     }

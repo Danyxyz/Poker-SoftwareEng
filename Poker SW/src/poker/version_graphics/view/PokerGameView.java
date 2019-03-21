@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -26,9 +27,11 @@ public class PokerGameView {
 	private Label productionlbl = new Label ("Daniel & Kevin");
 	private Label deckPlace = new Label ("Deckplace");
 	private Region rg = new Region(); 
+	private Stage stage = new Stage();
 	
 	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
+		this.stage = stage;
 		
 		// Create all of the player panes we need, and put them into an HBox
 		players = new HBox();
@@ -50,17 +53,56 @@ public class PokerGameView {
 
 	
 		// show Pokerchips on screen
-		ImageView imageView = new ImageView();
-		imageView.setImage(new Image("poker/images/ChipTest.png"));	
-		imageView.setLayoutY(300);
+		ImageView chip = new ImageView();
+		chip.setImage(new Image("poker/images/ChipTest.png"));	
+		chip.setLayoutY(300);
 		
-			
-		// Put players and controls into a BorderPane
+		//show cardback
+		ImageView cardBack = new ImageView();
+		cardBack.setImage(new Image("poker/images/FHNW_Cardback.png"));
+		cardBack.setLayoutY(5);
+		VBox deckBox = new VBox();
+		deckBox.getChildren().add(cardBack);
+		deckBox.setAlignment(Pos.BOTTOM_RIGHT);
+				
+		//Pokerchips initializing
+		ImageView redChip = new ImageView();
+		redChip.setImage(new Image("poker/images/PokerChipBlue.png"));
+		ImageView blueChip = new ImageView();
+		blueChip.setImage(new Image("poker/images/PokerChipRed.png"));
+		ImageView whiteChip = new ImageView();
+		whiteChip.setImage(new Image("poker/images/PokerChipWhite.png"));
+		ImageView yellowChip = new ImageView();
+		yellowChip.setImage(new Image("poker/images/yellowChip.png"));
+		
+		//show Table label
+		ImageView pokerLabel = new ImageView();
+		pokerLabel.setImage(new Image("poker/images/PokerTabelLabel.png"));
+		VBox vb = new VBox();
+		HBox hb = new HBox();
+		hb.getChildren().addAll(redChip, blueChip, chip, whiteChip, yellowChip);
+		hb.setSpacing(65);
+		hb.setAlignment(Pos.CENTER);
+		vb.getChildren().addAll(hb, pokerLabel);
+		vb.setAlignment(Pos.CENTER);
+		
+
+		
+		
+		//show Poker rankings
+	/*	ImageView pokerRanking = new ImageView();
+		pokerRanking.setImage(new Image("poker/images/Poker_Ranking2.png"));
+		VBox rankingBox = new VBox();
+		rankingBox.getChildren().addAll(pokerRanking, productionlbl);
+		 */
+		
+		// Put elements and controls into a BorderPane
 		
 		BorderPane root = new BorderPane();
 		root.setTop(players);
-		root.setCenter(imageView);
-		root.setLeft(deckPlace);
+		players.setAlignment(Pos.CENTER); //to center the cards
+		root.setCenter(vb);
+		root.setLeft(deckBox);
 		root.setRight(productionlbl);
 		root.setAlignment(productionlbl, Pos.BOTTOM_RIGHT);
 		root.setBottom(controls);
@@ -77,6 +119,8 @@ public class PokerGameView {
         stage.setTitle("Poker Miniproject");
         stage.setScene(scene);
         stage.show();		
+        
+        stage.setFullScreen(true);
 	}
 	
 	
@@ -91,7 +135,13 @@ public class PokerGameView {
 	public Button getDealButton() {
 		return controls.btnDeal;
 	}
-	public Button getRankingButton() {
-		return controls.btnRanking;
+	public Button getExitButton() {
+		return controls.btnExit;
+	}
+	public Button getFSButton() {
+		return controls.btnFs;
+	}
+	public Stage getStage() {
+		return this.stage;
 	}
 }
