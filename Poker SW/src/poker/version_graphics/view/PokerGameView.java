@@ -75,9 +75,10 @@ public class PokerGameView {
 		ImageView yellowChip = new ImageView();
 		yellowChip.setImage(new Image("poker/images/yellowChip.png"));
 		
+	
 		//show Table label
-		ImageView pokerLabel = new ImageView();
-		pokerLabel.setImage(new Image("poker/images/PokerTabelLabel.png"));
+	ImageView pokerLabel = new ImageView();
+		pokerLabel.setImage(new Image("poker/images/PokerTabelLabel2.png"));
 		VBox vb = new VBox();
 		HBox hb = new HBox();
 		hb.getChildren().addAll(redChip, blueChip, chip, whiteChip, yellowChip);
