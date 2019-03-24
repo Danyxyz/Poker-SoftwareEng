@@ -1,5 +1,6 @@
 package poker.version_graphics.view;
 
+import javafx.animation.PathTransition;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,10 +14,12 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.PathElement;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.PokerGameModel;
 
@@ -50,12 +53,6 @@ public class PokerGameView {
 		productionlbl.setPrefSize(100, 100);
 	//	productionlbl.setTextFill(Color.GOLD);
 		rg.setPrefSize(180, 100);
-
-	
-		// show Pokerchips on screen
-		ImageView chip = new ImageView();
-		chip.setImage(new Image("poker/images/ChipTest.png"));	
-		chip.setLayoutY(300);
 		
 		//show cardback
 		ImageView cardBack = new ImageView();
@@ -66,6 +63,8 @@ public class PokerGameView {
 		deckBox.setAlignment(Pos.BOTTOM_RIGHT);
 				
 		//Pokerchips initializing
+		ImageView chip = new ImageView();
+		chip.setImage(new Image("poker/images/ChipTest.png"));	
 		ImageView redChip = new ImageView();
 		redChip.setImage(new Image("poker/images/PokerChipBlue.png"));
 		ImageView blueChip = new ImageView();
@@ -77,8 +76,10 @@ public class PokerGameView {
 		
 	
 		//show Table label
-	ImageView pokerLabel = new ImageView();
+		ImageView pokerLabel = new ImageView();
 		pokerLabel.setImage(new Image("poker/images/PokerTabelLabel2.png"));
+		
+		//put the objects in layouts
 		VBox vb = new VBox();
 		HBox hb = new HBox();
 		hb.getChildren().addAll(redChip, blueChip, chip, whiteChip, yellowChip);
@@ -87,8 +88,19 @@ public class PokerGameView {
 		vb.getChildren().addAll(hb, pokerLabel);
 		vb.setAlignment(Pos.CENTER);
 		
-
-		
+		//Animation for chips
+  		PathElement p1 = new MoveTo(640, 10);
+  		PathElement p2 = new LineTo(640,13);
+          
+          Path path = new Path();
+          path.getElements().add(p1);
+          path.getElements().add(p2);
+          
+          PathTransition move = new PathTransition(
+        		  Duration.millis(400), path, hb);
+          move.setAutoReverse(true);
+          move.setCycleCount(200);
+          move.play();
 		
 		//show Poker rankings
 	/*	ImageView pokerRanking = new ImageView();

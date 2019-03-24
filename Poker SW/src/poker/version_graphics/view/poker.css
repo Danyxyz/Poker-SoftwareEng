@@ -11,7 +11,6 @@
 #controlArea {
     -fx-spacing: 15.0px;
     -fx-padding: 5.0px;
-    -fx-border-color: #005800;
     -fx-border-width: 2.0px;
     -fx-font-size: 15px;
    }
@@ -55,7 +54,7 @@
 #rootStyle{
 	-fx-spacing: 15.0px;
     -fx-padding: 5.0px;
-	-fx-background-color: linear-gradient(#005800, black, #005800, black);
+	-fx-background-color: linear-gradient(#005800, black);
 	
 }
 #rankingWindow{

@@ -41,6 +41,7 @@ public class PlayerPane extends VBox {
         HBox hb = new HBox();
         hb.getChildren().add(winlbl);
         this.getChildren().addAll(lblName, hboxCards,lblEvaluation, hb);
+               
         
         // Add CardLabels for the cards
         for (int i = 0; i < 5; i++) {
