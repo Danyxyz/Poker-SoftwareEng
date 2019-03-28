@@ -16,6 +16,7 @@ public class PokerGameController {
 	private PokerGameModel model;
 	private PokerGameView view;
 	private CardLabel lbl;
+	private PlayerPane pp;
 	
 	public PokerGameController(PokerGameModel model, PokerGameView view) {
 		this.model = model;
@@ -25,6 +26,7 @@ public class PokerGameController {
 		view.getDealButton().setOnAction( e -> deal());
 		view.getExitButton().setOnAction(e -> System.exit(0));
 		view.getFSButton().setOnAction(e -> view.getStage().setFullScreen(true));
+		view.getAddPlayerBtn().setOnAction(e -> increasePlayer());
 	}
 	
 
@@ -65,5 +67,10 @@ public class PokerGameController {
             Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
             alert.showAndWait();
     	}
+    }
+    public void increasePlayer() {
+    	this.view.getStage().close();
+    	PokerGame.NUM_PLAYERS++;
+    	
     }
 }

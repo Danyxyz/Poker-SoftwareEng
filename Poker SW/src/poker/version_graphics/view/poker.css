@@ -54,7 +54,7 @@
 #rootStyle{
 	-fx-spacing: 15.0px;
     -fx-padding: 5.0px;
-	-fx-background-color: linear-gradient(#005800, black);
+	-fx-background-color: linear-gradient(black, #005800);
 	
 }
 #rankingWindow{

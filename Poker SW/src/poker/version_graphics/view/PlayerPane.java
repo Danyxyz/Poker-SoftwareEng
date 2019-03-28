@@ -28,7 +28,7 @@ public class PlayerPane extends VBox {
     private Label lblEvaluation = new Label("--");
     private Label spacelbl = new Label("");
     private Label winlbl = new Label("Games won: ");
- //   private Label winevualate = new Label("-");
+ //   private Label winevaluate = new Label("-");
     
     // Link to player object
     private Player player;

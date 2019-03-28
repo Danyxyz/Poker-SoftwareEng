@@ -11,21 +11,25 @@ import poker.version_graphics.model.DeckOfCards;
 public class ControlArea extends BorderPane{
     private DeckLabel lblDeck = new DeckLabel();
     private Region spacer = new Region(); // Empty spacer
+    private Region leftSpacer = new Region(); //empty spacer for design purposes
     Button btnShuffle = new Button("Shuffle");
     Button btnDeal = new Button("Deal");
     Button btnExit = new Button ("Exit");
     Button btnFs = new Button("Fullscreen");
+    Button addPlayer = new Button("Add Player");
 
     public ControlArea() {
     	super(); // Always call super-constructor first !!
     	
     	HBox controlBox = new HBox();
+    	addPlayer.setPrefSize(150, 50);
     	btnExit.setPrefSize(100, 50);
     	btnDeal.setPrefSize(100, 50);
     	btnShuffle.setPrefSize(100, 50);
     	btnFs.setPrefSize(150,50);
-    	spacer.setPrefWidth(250);
-    	controlBox.getChildren().addAll(lblDeck, spacer, btnExit, btnFs, btnShuffle, btnDeal);
+    	spacer.setPrefWidth(50);
+    	leftSpacer.setPrefWidth(50);
+    	controlBox.getChildren().addAll(leftSpacer,lblDeck, spacer, btnExit, addPlayer, btnFs, btnShuffle, btnDeal);
     	controlBox.setSpacing(10);
     	this.setCenter(controlBox);
     
