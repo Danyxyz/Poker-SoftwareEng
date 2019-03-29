@@ -1,5 +1,7 @@
 package poker.version_graphics.view;
 
+import java.util.ArrayList;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -35,7 +37,8 @@ public class PokerGameView {
 	private Label deckPlace = new Label ("Deckplace");
 	private Region rg = new Region(); 
 	private Stage stage = new Stage();
-	private Timeline time;
+	public ArrayList <PlayerPane> playerPaneList = new ArrayList <PlayerPane>();
+	
 	
 	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
@@ -204,11 +207,22 @@ public class PokerGameView {
 	public Button getAddPlayerBtn() {
 		return controls.addPlayer;
 	}
+	public Button getDecreaseButton() {
+		return controls.decreasePlayer;
+	}
 	public Stage getStage() {
 		return this.stage;
 	}
-	public void startAnimation() {
-		time = new Timeline();
-		time.play();
+	public void clearDisplay() {
+		players.getChildren().clear();
 	}
+	public void updatePane() {
+		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+			PlayerPane pp = new PlayerPane();
+			pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
+			players.getChildren().add(pp);
+		}
+	}
+	
+	
 }

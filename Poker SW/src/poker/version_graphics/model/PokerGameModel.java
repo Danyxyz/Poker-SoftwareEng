@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import poker.version_graphics.PokerGame;
 
 public class PokerGameModel {
-	private final ArrayList<Player> players = new ArrayList<>();
+	public final static ArrayList<Player> players = new ArrayList<>();
 	private DeckOfCards deck;
 	
 	public PokerGameModel() {

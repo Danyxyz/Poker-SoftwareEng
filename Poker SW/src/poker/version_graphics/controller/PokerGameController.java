@@ -27,6 +27,7 @@ public class PokerGameController {
 		view.getExitButton().setOnAction(e -> System.exit(0));
 		view.getFSButton().setOnAction(e -> view.getStage().setFullScreen(true));
 		view.getAddPlayerBtn().setOnAction(e -> increasePlayer());
+		view.getDecreaseButton().setOnAction(e -> decreasePlayer());
 	}
 	
 
@@ -68,9 +69,26 @@ public class PokerGameController {
             alert.showAndWait();
     	}
     }
-    public void increasePlayer() {
-    	this.view.getStage().close();
-    	PokerGame.NUM_PLAYERS++;
+    
+    public void updateDisplay() {
+    	PokerGameModel.players.clear();
+    	view.clearDisplay();
     	
+    	for (int i = 1; i < PokerGame.NUM_PLAYERS+1; i++) {
+			PokerGameModel.players.add(new Player("Player " + i));
+		}
+    	
+    	view.updatePane();
+    
     }
+    public void increasePlayer() {
+    	PokerGame.NUM_PLAYERS++;
+     	this.updateDisplay();
+    }
+    public void decreasePlayer() {
+    	PokerGame.NUM_PLAYERS--;
+     	this.updateDisplay();
+     	
+    }
+    
 }
