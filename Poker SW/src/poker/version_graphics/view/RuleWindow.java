@@ -21,12 +21,12 @@ public class RuleWindow {
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle(title);
 		window.setMinWidth(300);
-		window.setHeight(800);
+		window.setHeight(900);
 		
 	
 		
 		
-		Label label = new Label(); // tabulatoren und fette wörter muss noch formatiert werden
+		Label label = new Label(); // tabulatoren und fette wörter müssen geändert werden
 		
 		label.setText("\t"+"\t"+"\t"+"NOTE: THIS IS A SIMPLER VERSION OF THE GAME, NOT EVERY RULE IS IMPLEMENTED"+
 				"\n"+"\n"+"The Rules of Poker\r\n" + 
