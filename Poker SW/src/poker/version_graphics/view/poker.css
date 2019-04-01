@@ -64,7 +64,7 @@
     -fx-border-width: 2.0px;
 }
 .button{
-	-fx-font-size:17px;
+	-fx-font-size:14px;
 	-fx-background-radius:15px;
 	-fx-background-color:#a52a2a;
 	-fx-text-fill:white;

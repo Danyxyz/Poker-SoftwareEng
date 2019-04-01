@@ -51,8 +51,9 @@ public class PokerGameView {
 	private Label deckPlace = new Label ("Deckplace");
 	private Region rg = new Region(); 
 	private Stage stage = new Stage();
+	public String musicURL = "res//New_York.wav";
 	public ArrayList <PlayerPane> playerPaneList = new ArrayList <PlayerPane>();
-	
+	Clip clip;
 	
 	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
@@ -69,9 +70,9 @@ public class PokerGameView {
 			//animations playerpane
 			PathElement pe1 = new MoveTo(300, -100); //
 			PathElement pe2 = new LineTo(295, 150);
-			Path ppPath = new Path();
-			ppPath.getElements().add(pe1);
-			ppPath.getElements().add(pe2);
+				Path ppPath = new Path();
+				ppPath.getElements().add(pe1);
+				ppPath.getElements().add(pe2);
 			PathTransition move = new PathTransition(Duration.seconds(2), ppPath, pp);
 			
 			move.play();
@@ -83,7 +84,7 @@ public class PokerGameView {
 		controls.linkDeck(model.getDeck()); // link DeckLabel to DeckOfCards in the logic
 	
 		
-		// animate Controlarea
+		// animate controlarea flying in from bottom to screen
 		PathElement pe1 = new MoveTo(620, 100); //start position
 		PathElement pe2 = new LineTo(595, 30); // end position
 		Path path = new Path();
@@ -94,11 +95,11 @@ public class PokerGameView {
 		move.play();
 		
 		// Resizing the labels, correct the position of the label/region
-		
 		productionlbl.setPrefSize(100, 100);
 		rg.setPrefSize(180, 100);
 		
 		//show cardback
+	
 		ImageView cardBack = new ImageView();
 		cardBack.setImage(new Image("poker/images/FHNW_Cardback.png"));
 		cardBack.setLayoutY(5);
@@ -106,7 +107,7 @@ public class PokerGameView {
 		deckBox.getChildren().add(cardBack);
 		deckBox.setAlignment(Pos.BOTTOM_RIGHT);
 
-		//cardback Animation
+		//cardback Animation from left to right
 		PathElement cbpe1 = new MoveTo(-100, 40); //start position
 		PathElement cbpe2 = new LineTo(100, 50); // end position
 		Path cbPath = new Path();
@@ -118,7 +119,8 @@ public class PokerGameView {
 		
 	
 				
-		//Pokerchips initializing
+		//show images of pokerchips on screen 
+		
 		ImageView chip = new ImageView();
 		chip.setImage(new Image("poker/images/ChipTest.png"));	
 		ImageView redChip = new ImageView();
@@ -131,7 +133,7 @@ public class PokerGameView {
 		yellowChip.setImage(new Image("poker/images/yellowChip.png"));
 		
 	
-		//show Table label
+		//show Table label "Experience Poker"
 		ImageView pokerLabel = new ImageView();
 		pokerLabel.setImage(new Image("poker/images/PokerTabelLabel2Transp.png"));
 		
@@ -144,7 +146,8 @@ public class PokerGameView {
 		vb.getChildren().addAll(hb, pokerLabel);
 		vb.setAlignment(Pos.CENTER);
 		
-		//Animation for chips
+		//Animation for chips jumping up and down
+		
   		PathElement p1 = new MoveTo(305, 6);
   		PathElement p2 = new LineTo(305,13);
           
@@ -158,11 +161,13 @@ public class PokerGameView {
           chipMove.setCycleCount(10);
           chipMove.play();
           
-          //play music
+          
+          //plays music when opening the program
+          
 			try {
-			File musicPath = new File("res//Music.wav");
+			File musicPath = new File(musicURL);
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-				Clip clip = AudioSystem.getClip();				
+				clip = AudioSystem.getClip();				
 				clip.open(audioInput);
 				clip.start();
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -174,6 +179,7 @@ public class PokerGameView {
           
           
 		//show Poker rankings
+			
 	    ImageView pokerRanking = new ImageView();
 		pokerRanking.setImage(new Image("poker/images/Poker_Ranking2.png"));
 		VBox rankingBox = new VBox();
@@ -189,14 +195,14 @@ public class PokerGameView {
 		
 		
 		// Put elements and controls into a BorderPane
-		
+
 		BorderPane root = new BorderPane();
 		root.setTop(players);
 		players.setAlignment(Pos.CENTER); //to center the cards
 		root.setCenter(vb);
 		root.setLeft(deckBox);
 		root.setRight(rankingBox);
-		root.setAlignment(productionlbl, Pos.BOTTOM_RIGHT);
+		root.setAlignment(productionlbl, Pos.TOP_CENTER);
 		root.setBottom(controls);
 		root.setId("rootStyle");
 	
@@ -215,6 +221,7 @@ public class PokerGameView {
     //    stage.setFullScreen(true);
 	}
 	
+	//Getter and Setter
 	
 	public PlayerPane getPlayerPane(int i) {
 		return (PlayerPane) players.getChildren().get(i);
@@ -242,14 +249,41 @@ public class PokerGameView {
 	public Button getRuleButton() {
 		return controls.rulebtn;
 	}
-	public Button getMusicButton() {
-		return controls.musicbtn;
+	public Button getChangeMusicButton() {
+		return controls.changeMusicbtn;
+	}
+	public Button getStopMusicButton() {
+		return controls.stopMusicbtn;
 	}
 	public Stage getStage() {
 		return this.stage;
 	}
+	
+	// clears array of players
 	public void clearDisplay() {
 		players.getChildren().clear();
+	}
+	public void stopMusic() {
+		clip.stop();
+	}
+	
+	
+	/* stops initial song
+	 * creates new File and updates the song url with given parameters
+	 * plays the new song
+	 */
+	public void updateMusic(String path) {
+		clip.stop();
+		try {
+			File musicPath = new File(path); 
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				clip = AudioSystem.getClip();				
+				clip.open(audioInput);
+				clip.start();
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 	public void updatePane() {

@@ -25,13 +25,15 @@ public class PokerGameController {
 		this.model = model;
 		this.view = view;
 		
-		view.getShuffleButton().setOnAction( e -> shuffle() );
-		view.getDealButton().setOnAction( e -> deal());
-		view.getExitButton().setOnAction(e -> System.exit(0));
+		view.getShuffleButton().setOnAction( e -> shuffle() );		
+		view.getDealButton().setOnAction( e -> deal()); 				
+		view.getExitButton().setOnAction(e -> System.exit(0)); 				
 		view.getFSButton().setOnAction(e -> view.getStage().setFullScreen(true));
 		view.getAddPlayerBtn().setOnAction(e -> increasePlayer());
 		view.getDecreaseButton().setOnAction(e -> decreasePlayer());
 		view.getRuleButton().setOnAction(e -> RuleWindow.display("Rules"));
+		view.getChangeMusicButton().setOnAction(e -> view.updateMusic("res//Take_Ten.wav"));
+		view.getStopMusicButton().setOnAction(e -> view.stopMusic());
 	}
 	
 

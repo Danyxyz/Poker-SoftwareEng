@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import poker.version_graphics.model.DeckOfCards;
 
 public class ControlArea extends BorderPane{
@@ -16,25 +17,32 @@ public class ControlArea extends BorderPane{
     Button btnDeal = new Button("Deal");
     Button btnExit = new Button ("Exit");
     Button btnFs = new Button("Fullscreen");
-    Button addPlayer = new Button("add Player");
-    Button decreasePlayer = new Button("decrease Player");
+    Button addPlayer = new Button("+ Player");
+    Button decreasePlayer = new Button("- Player");
     Button rulebtn = new Button ("Rules");
-    Button musicbtn = new Button("Play Music");
+    Button changeMusicbtn = new Button("Change Music");
+    Button stopMusicbtn = new Button("Stop Music");
 
     public ControlArea() {
     	super(); // Always call super-constructor first !!
     	
     	HBox controlBox = new HBox();
-    	addPlayer.setPrefSize(150, 50);
-    	btnExit.setPrefSize(100, 50);
-    	btnDeal.setPrefSize(100, 50);
-    	btnShuffle.setPrefSize(100, 50);
-    	btnFs.setPrefSize(150,50);
-    	decreasePlayer.setPrefSize(150, 50);
-    	rulebtn.setPrefSize(100, 50);
+    	VBox musicBox = new VBox();
+    	
+    	//Change size of buttons
+    	changeMusicbtn.setPrefSize(150, 25);
+    	stopMusicbtn.setPrefSize(150, 25);
+    	musicBox.getChildren().addAll(changeMusicbtn, stopMusicbtn);
+    	addPlayer.setPrefSize(100, 40);
+    	decreasePlayer.setPrefSize(100, 40);
+    	btnExit.setPrefSize(80, 40);
+    	btnDeal.setPrefSize(80, 40);
+    	btnShuffle.setPrefSize(80, 40);
+    	btnFs.setPrefSize(100, 40);
+    	rulebtn.setPrefSize(80, 40);
     	spacer.setPrefWidth(50);
     	leftSpacer.setPrefWidth(36);
-    	controlBox.getChildren().addAll(leftSpacer,lblDeck, spacer, btnExit,musicbtn, rulebtn, 
+    	controlBox.getChildren().addAll(leftSpacer,lblDeck, spacer, btnExit,musicBox, rulebtn, 
     			decreasePlayer, addPlayer, btnFs, btnShuffle, btnDeal);
     	controlBox.setSpacing(10);
     	this.setCenter(controlBox);
