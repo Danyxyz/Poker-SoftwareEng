@@ -16,8 +16,10 @@ public class ControlArea extends BorderPane{
     Button btnDeal = new Button("Deal");
     Button btnExit = new Button ("Exit");
     Button btnFs = new Button("Fullscreen");
-    Button addPlayer = new Button("Add Player");
+    Button addPlayer = new Button("add Player");
     Button decreasePlayer = new Button("decrease Player");
+    Button rulebtn = new Button ("Rules");
+    Button musicbtn = new Button("Play Music");
 
     public ControlArea() {
     	super(); // Always call super-constructor first !!
@@ -29,9 +31,10 @@ public class ControlArea extends BorderPane{
     	btnShuffle.setPrefSize(100, 50);
     	btnFs.setPrefSize(150,50);
     	decreasePlayer.setPrefSize(150, 50);
+    	rulebtn.setPrefSize(100, 50);
     	spacer.setPrefWidth(50);
-    	leftSpacer.setPrefWidth(50);
-    	controlBox.getChildren().addAll(leftSpacer,lblDeck, spacer, btnExit, 
+    	leftSpacer.setPrefWidth(36);
+    	controlBox.getChildren().addAll(leftSpacer,lblDeck, spacer, btnExit,musicbtn, rulebtn, 
     			decreasePlayer, addPlayer, btnFs, btnShuffle, btnDeal);
     	controlBox.setSpacing(10);
     	this.setCenter(controlBox);

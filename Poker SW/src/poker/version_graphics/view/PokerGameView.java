@@ -1,6 +1,17 @@
 package poker.version_graphics.view;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -20,6 +31,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -28,6 +40,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.PokerGameModel;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 public class PokerGameView {
 	private HBox players;
@@ -44,6 +58,7 @@ public class PokerGameView {
 		this.model = model;
 		this.stage = stage;
 		
+		
 		// Create all of the player panes we need, and put them into an HBox
 		players = new HBox();
 		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
@@ -51,9 +66,9 @@ public class PokerGameView {
 			pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
 			players.getChildren().add(pp);
 			
-			
+			//animations playerpane
 			PathElement pe1 = new MoveTo(300, -100); //
-			PathElement pe2 = new LineTo(300, 150);
+			PathElement pe2 = new LineTo(295, 150);
 			Path ppPath = new Path();
 			ppPath.getElements().add(pe1);
 			ppPath.getElements().add(pe2);
@@ -70,7 +85,7 @@ public class PokerGameView {
 		
 		// animate Controlarea
 		PathElement pe1 = new MoveTo(620, 100); //start position
-		PathElement pe2 = new LineTo(620, 30); // end position
+		PathElement pe2 = new LineTo(595, 30); // end position
 		Path path = new Path();
 		path.getElements().add(pe1);
 		path.getElements().add(pe2);
@@ -143,6 +158,20 @@ public class PokerGameView {
           chipMove.setCycleCount(10);
           chipMove.play();
           
+          //play music
+			try {
+			File musicPath = new File("res//Music.wav");
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				Clip clip = AudioSystem.getClip();				
+				clip.open(audioInput);
+				clip.start();
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+          
+          
           
 		//show Poker rankings
 	    ImageView pokerRanking = new ImageView();
@@ -183,7 +212,7 @@ public class PokerGameView {
         stage.setScene(scene);
         stage.show();		
         
-        stage.setFullScreen(true);
+    //    stage.setFullScreen(true);
 	}
 	
 	
@@ -210,12 +239,19 @@ public class PokerGameView {
 	public Button getDecreaseButton() {
 		return controls.decreasePlayer;
 	}
+	public Button getRuleButton() {
+		return controls.rulebtn;
+	}
+	public Button getMusicButton() {
+		return controls.musicbtn;
+	}
 	public Stage getStage() {
 		return this.stage;
 	}
 	public void clearDisplay() {
 		players.getChildren().clear();
 	}
+
 	public void updatePane() {
 		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
 			PlayerPane pp = new PlayerPane();
@@ -223,6 +259,9 @@ public class PokerGameView {
 			players.getChildren().add(pp);
 		}
 	}
-	
-	
 }
+
+	
+	
+	
+

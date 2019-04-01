@@ -1,6 +1,9 @@
 package poker.version_graphics.controller;
 
+import javax.sound.sampled.Clip;
+
 import javafx.scene.control.Alert;
+
 import javafx.scene.control.Alert.AlertType;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Card;
@@ -10,7 +13,7 @@ import poker.version_graphics.model.PokerGameModel;
 import poker.version_graphics.view.CardLabel;
 import poker.version_graphics.view.PlayerPane;
 import poker.version_graphics.view.PokerGameView;
-import poker.version_graphics.view.RankingWindow;
+import poker.version_graphics.view.RuleWindow;
 
 public class PokerGameController {
 	private PokerGameModel model;
@@ -28,6 +31,7 @@ public class PokerGameController {
 		view.getFSButton().setOnAction(e -> view.getStage().setFullScreen(true));
 		view.getAddPlayerBtn().setOnAction(e -> increasePlayer());
 		view.getDecreaseButton().setOnAction(e -> decreasePlayer());
+		view.getRuleButton().setOnAction(e -> RuleWindow.display("Rules"));
 	}
 	
 
