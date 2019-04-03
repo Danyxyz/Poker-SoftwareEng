@@ -52,4 +52,15 @@ public class Player implements Comparable<Player> {
     public int compareTo(Player o) {
         return handType.compareTo(o.handType);
     }
+    public ArrayList <Player> checkWinner(ArrayList<Player> currentWinners, Player competitor) {
+    	if (currentWinners== null || currentWinners.get(0).compareTo(competitor) <= -1) {
+    		ArrayList <Player> newCurrentWinner = new ArrayList <Player>();
+    		newCurrentWinner.add(competitor);
+    		return newCurrentWinner;
+    	} else if (currentWinners.get(0).compareTo(competitor)>= 1) {
+    		return currentWinners;
+    	} currentWinners.add(competitor);
+    	return currentWinners;
+    }
+    
 }

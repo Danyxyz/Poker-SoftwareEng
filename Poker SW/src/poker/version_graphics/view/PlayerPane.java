@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -17,6 +18,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.PathElement;
 import javafx.util.Duration;
+import poker.version_graphics.controller.PokerGameController;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.HandType;
 import poker.version_graphics.model.Player;
@@ -28,18 +30,18 @@ public class PlayerPane extends VBox {
     private Label lblEvaluation = new Label("--");
     private Label spacelbl = new Label("");
     private Label winlbl = new Label("Games won: ");
- //   private Label winevaluate = new Label("-");
+    public Label gamesWon = new Label(""+0);
     
     // Link to player object
     private Player player;
     
-    public PlayerPane() {
+    public PlayerPane() { 
         super(); // Always call super-constructor first !!
         this.getStyleClass().add("player"); // CSS style class
         lblName.setPrefSize(50, 50);
         // Add child nodes, also added the winlabel and the winresultlabel
         HBox hb = new HBox();
-        hb.getChildren().add(winlbl);
+        hb.getChildren().addAll(winlbl, gamesWon);
         this.getChildren().addAll(lblName, hboxCards,lblEvaluation, hb);
                
         
@@ -68,18 +70,7 @@ public class PlayerPane extends VBox {
     			lblEvaluation.setText(evaluation.toString());
     		else
     			lblEvaluation.setText("--");
-    		    	
-    		    		//PathElement pe1 = new MoveTo(0, 500); // Start position
-    		    		//PathElement pe2 = new LineTo(200, 200);
-    		   //	PathElement pe3 = new ArcTo(50, 100, 0, 300, 450, false, false);
-    		    		//Path path = new Path();
-    		    		//path.getElements().add(pe1);
-    		    		//path.getElements().add(pe2);
-    		    		//path.getElements().add(pe3);
-    		    		//PathTransition move = new PathTransition(Duration.millis(4000), path, cl);
-    		   //	move.setAutoReverse(true);
-    		    		//move.setCycleCount(Animation.INDEFINITE);
-    		    		//move.play();
     	}
     }
-}
+    }
+

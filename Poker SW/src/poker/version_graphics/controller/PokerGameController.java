@@ -1,5 +1,7 @@
 package poker.version_graphics.controller;
 
+import java.util.ArrayList;
+
 import javax.sound.sampled.Clip;
 
 import javafx.scene.control.Alert;
@@ -20,6 +22,10 @@ public class PokerGameController {
 	private PokerGameView view;
 	private CardLabel lbl;
 	private PlayerPane pp;
+	public static int winCountp1 = 0;
+	public static int winCountp2 = 0;
+	public static int winCountp3 = 0;
+	public static int winCountp4 = 0;
 	
 	public PokerGameController(PokerGameModel model, PokerGameView view) {
 		this.model = model;
@@ -50,6 +56,7 @@ public class PokerGameController {
     	}
 
     	model.getDeck().shuffle();
+		pp.gamesWon.setText("-");	 //reset Gameswon label
     }
     
     /**
@@ -59,7 +66,8 @@ public class PokerGameController {
     	int cardsRequired = PokerGame.NUM_PLAYERS * Player.HAND_SIZE;
     	DeckOfCards deck = model.getDeck();
     	if (cardsRequired <= deck.getCardsRemaining()) {
-        	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+        	ArrayList <Player> currentWinners = null;
+    		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
         		Player p = model.getPlayer(i);
         		p.discardHand();
         		for (int j = 0; j < Player.HAND_SIZE; j++) {
@@ -67,9 +75,40 @@ public class PokerGameController {
         			p.addCard(card);
         		}
         		p.evaluateHand();
+        		currentWinners = p.checkWinner(currentWinners, p);
         		PlayerPane pp = view.getPlayerPane(i);
         		pp.updatePlayerDisplay();
         	}
+    		// set winner-labels
+    		for (int i = 0; i < currentWinners.size(); i++) {
+    			int number = (int)currentWinners.get(i).getPlayerName().charAt(currentWinners.get(i).getPlayerName().length()-1) - '0';
+
+    			PlayerPane pp = new PlayerPane();
+    		
+    			switch (number) {
+    			case 1:
+    			winCountp1++;
+    			pp = view.getPlayerPane(i);
+    			pp.gamesWon.setText(Integer.toString(winCountp1));
+    			break;
+    		
+    			case 2:
+    			winCountp2++;
+    			pp = view.getPlayerPane(i);
+    			pp.gamesWon.setText(Integer.toString(winCountp2));
+    			break;
+    			
+    			case 3:
+				winCountp1++;
+				pp = view.getPlayerPane(i);
+				pp.gamesWon.setText(Integer.toString(winCountp3));
+    			
+    			case 4:
+    			winCountp1++;
+    			pp = view.getPlayerPane(i);
+    			pp.gamesWon.setText(Integer.toString(winCountp4));
+    			}
+    		}
     	} else {
             Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
             alert.showAndWait();
@@ -88,13 +127,21 @@ public class PokerGameController {
     
     }
     public void increasePlayer() {
+    	if (PokerGame.NUM_PLAYERS <=3) { //set max to 4 players 
     	PokerGame.NUM_PLAYERS++;
      	this.updateDisplay();
+    } else {
+    	   Alert alert = new Alert(AlertType.ERROR, "Max 4 Players....");
+           alert.showAndWait();
+    }
     }
     public void decreasePlayer() {
+    	if (PokerGame.NUM_PLAYERS <=1) { //minimum of 1 player required
+    		   Alert alert = new Alert(AlertType.ERROR, "1 Player required");
+               alert.showAndWait();
+    	} else {
     	PokerGame.NUM_PLAYERS--;
-     	this.updateDisplay();
-     	
+     	this.updateDisplay();	
     }
-    
+    }
 }
