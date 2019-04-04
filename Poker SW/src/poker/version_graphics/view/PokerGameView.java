@@ -47,11 +47,12 @@ public class PokerGameView {
 	private HBox players;
 	private ControlArea controls;
 	private PokerGameModel model;
-	private Label productionlbl = new Label ("Daniel & Kevin");
+	private Label productionlbl = new Label ("Daniel & Kevin"); //easter Egg
 	private Label deckPlace = new Label ("Deckplace");
-	private Region rg = new Region(); 
+	private Region rg = new Region(); //empty 
+	private Region r = new Region(); //empty 
 	private Stage stage = new Stage();
-	public String musicURL = "res//New_York.wav";
+	public String musicURL = "res//New_York.wav"; //music plays, when starting game
 	public ArrayList <PlayerPane> playerPaneList = new ArrayList <PlayerPane>();
 	Clip clip;
 	
@@ -67,12 +68,14 @@ public class PokerGameView {
 			pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
 			players.getChildren().add(pp);
 			
-			//animations playerpane
-			PathElement pe1 = new MoveTo(300, -100); //
+			//animations playerpane - from top to screen
+			PathElement pe1 = new MoveTo(300, -100); //start position - out of sight
 			PathElement pe2 = new LineTo(295, 150);
-				Path ppPath = new Path();
+				
+			Path ppPath = new Path();
 				ppPath.getElements().add(pe1);
 				ppPath.getElements().add(pe2);
+			
 			PathTransition move = new PathTransition(Duration.seconds(2), ppPath, pp);
 			
 			move.play();
@@ -84,35 +87,40 @@ public class PokerGameView {
 		controls.linkDeck(model.getDeck()); // link DeckLabel to DeckOfCards in the logic
 	
 		
-		// animate controlarea flying in from bottom to screen
-		PathElement pe1 = new MoveTo(620, 100); //start position
-		PathElement pe2 = new LineTo(595, 30); // end position
-		Path path = new Path();
-		path.getElements().add(pe1);
-		path.getElements().add(pe2);
+		// animate controlarea - from bottom to screen
+		PathElement pe1 = new MoveTo(620, 100); //start position - out of sight
+		PathElement pe2 = new LineTo(595, 30);
+		
+			Path path = new Path();
+				path.getElements().add(pe1);
+				path.getElements().add(pe2);
+				
 		PathTransition move = new PathTransition(Duration.seconds(2), path, controls);
 		
 		move.play();
+		
 		
 		// Resizing the labels, correct the position of the label/region
 		productionlbl.setPrefSize(100, 100);
 		rg.setPrefSize(180, 100);
 		
-		//show cardback
-	
+		//show cardback with image
 		ImageView cardBack = new ImageView();
-		cardBack.setImage(new Image("poker/images/FHNW_Cardback.png"));
+		cardBack.setImage(new Image("poker/images/FHNW_Cardback2.png"));
 		cardBack.setLayoutY(5);
+	
 		VBox deckBox = new VBox();
 		deckBox.getChildren().add(cardBack);
 		deckBox.setAlignment(Pos.BOTTOM_RIGHT);
 
-		//cardback Animation from left to right
-		PathElement cbpe1 = new MoveTo(-100, 40); //start position
-		PathElement cbpe2 = new LineTo(100, 50); // end position
+		//cardback Animation - left to right
+		PathElement cbpe1 = new MoveTo(-100, 40); // //start position - out of sight
+		PathElement cbpe2 = new LineTo(100, 50); 
+				
 		Path cbPath = new Path();
-		cbPath.getElements().add(cbpe1);
-		cbPath.getElements().add(cbpe2);
+			cbPath.getElements().add(cbpe1);
+			cbPath.getElements().add(cbpe2);
+			
 		PathTransition cbMove = new PathTransition(Duration.seconds(2.5), cbPath, cardBack);
 		
 		cbMove.play();
@@ -123,12 +131,16 @@ public class PokerGameView {
 		
 		ImageView chip = new ImageView();
 		chip.setImage(new Image("poker/images/ChipTest.png"));	
+		
 		ImageView redChip = new ImageView();
 		redChip.setImage(new Image("poker/images/PokerChipBlue.png"));
+		
 		ImageView blueChip = new ImageView();
 		blueChip.setImage(new Image("poker/images/PokerChipRed.png"));
+		
 		ImageView whiteChip = new ImageView();
 		whiteChip.setImage(new Image("poker/images/PokerChipWhite.png"));
+		
 		ImageView yellowChip = new ImageView();
 		yellowChip.setImage(new Image("poker/images/yellowChip.png"));
 		
@@ -137,33 +149,53 @@ public class PokerGameView {
 		ImageView pokerLabel = new ImageView();
 		pokerLabel.setImage(new Image("poker/images/PokerTabelLabel2Transp.png"));
 		
-		//put the objects in layouts
+		//put the the chips in layouts
 		VBox vb = new VBox();
 		HBox hb = new HBox();
+		
 		hb.getChildren().addAll(redChip, blueChip, chip, whiteChip, yellowChip);
 		hb.setSpacing(65);
 		hb.setAlignment(Pos.CENTER);
+		
 		vb.getChildren().addAll(hb, pokerLabel);
 		vb.setAlignment(Pos.CENTER);
 		
 		//Animation for chips jumping up and down
-		
   		PathElement p1 = new MoveTo(305, 6);
   		PathElement p2 = new LineTo(305,13);
           
-          Path chipPath = new Path();
+        Path chipPath = new Path();
           chipPath.getElements().add(p1);
           chipPath.getElements().add(p2);
           
-          PathTransition chipMove = new PathTransition(
-        		  Duration.millis(400), chipPath, hb);
+        PathTransition chipMove = new PathTransition(Duration.millis(400), chipPath, hb);
           chipMove.setAutoReverse(true);
           chipMove.setCycleCount(10);
           chipMove.play();
           
-          
-          //plays music when opening the program
-          
+    
+		//show Poker rankings with image
+	    ImageView pokerRanking = new ImageView();
+		pokerRanking.setImage(new Image("poker/images/Poker_Ranking2.png"));
+		
+		VBox rankingBox = new VBox();
+		r.setPrefHeight(100); //region height
+		rankingBox.getChildren().addAll(pokerRanking, r);
+		
+		//animation for poker rankings
+		PathElement prpe1 = new MoveTo(600, 200); //start position
+		PathElement prpe2 = new LineTo(185, 200); // end position
+		
+		Path prPath = new Path();
+			prPath.getElements().add(prpe1);
+			prPath.getElements().add(prpe2);
+			
+		PathTransition prMove = new PathTransition(Duration.seconds(3), prPath, rankingBox);
+		
+		prMove.play();
+		
+		
+        //plays music when opening the program
 			try {
 			File musicPath = new File(musicURL);
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
@@ -175,34 +207,15 @@ public class PokerGameView {
 				e.printStackTrace();
 			}
 		
-          
-          
-          
-		//show Poker rankings
-			
-	    ImageView pokerRanking = new ImageView();
-		pokerRanking.setImage(new Image("poker/images/Poker_Ranking2.png"));
-		VBox rankingBox = new VBox();
-		rankingBox.getChildren().addAll(pokerRanking, productionlbl);
-		PathElement prpe1 = new MoveTo(600, 200); //start position
-		PathElement prpe2 = new LineTo(185, 200); // end position
-		Path prPath = new Path();
-		prPath.getElements().add(prpe1);
-		prPath.getElements().add(prpe2);
-		PathTransition prMove = new PathTransition(Duration.seconds(3), prPath, rankingBox);
-		
-		prMove.play();
-		
 		
 		// Put elements and controls into a BorderPane
-
 		BorderPane root = new BorderPane();
 		root.setTop(players);
 		players.setAlignment(Pos.CENTER); //to center the cards
+		
 		root.setCenter(vb);
 		root.setLeft(deckBox);
 		root.setRight(rankingBox);
-		root.setAlignment(productionlbl, Pos.TOP_CENTER);
 		root.setBottom(controls);
 		root.setId("rootStyle");
 	
@@ -214,14 +227,15 @@ public class PokerGameView {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(
                 getClass().getResource("poker.css").toExternalForm());
+        
         stage.setTitle("Poker Miniproject");
         stage.setScene(scene);
         stage.show();		
-        
-    //    stage.setFullScreen(true);
 	}
 	
+	/*
 	//Getter and Setter
+	*/
 	
 	public PlayerPane getPlayerPane(int i) {
 		return (PlayerPane) players.getChildren().get(i);
@@ -255,6 +269,9 @@ public class PokerGameView {
 	public Button getStopMusicButton() {
 		return controls.stopMusicbtn;
 	}
+	public void stopMusic() {
+		clip.stop();
+	}
 	public Stage getStage() {
 		return this.stage;
 	}
@@ -263,10 +280,6 @@ public class PokerGameView {
 	public void clearDisplay() {
 		players.getChildren().clear();
 	}
-	public void stopMusic() {
-		clip.stop();
-	}
-	
 	
 	/* stops initial song
 	 * creates new File and updates the song url with given parameters
@@ -280,7 +293,7 @@ public class PokerGameView {
 				clip = AudioSystem.getClip();				
 				clip.open(audioInput);
 				clip.start();
-				clip.loop(Clip.LOOP_CONTINUOUSLY);
+				clip.loop(Clip.LOOP_CONTINUOUSLY); 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

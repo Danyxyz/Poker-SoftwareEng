@@ -29,21 +29,25 @@ public class ControlArea extends BorderPane{
     	HBox controlBox = new HBox();
     	VBox musicBox = new VBox();
     	
-    	//Change size of buttons
+    	//Change size music buttons
     	changeMusicbtn.setPrefSize(150, 25);
     	stopMusicbtn.setPrefSize(150, 25);
+    	musicBox.setSpacing(5);
     	musicBox.getChildren().addAll(changeMusicbtn, stopMusicbtn);
+    	
     	addPlayer.setPrefSize(100, 40);
     	decreasePlayer.setPrefSize(100, 40);
+    	
     	btnExit.setPrefSize(80, 40);
     	btnDeal.setPrefSize(80, 40);
     	btnShuffle.setPrefSize(80, 40);
     	btnFs.setPrefSize(100, 40);
     	rulebtn.setPrefSize(80, 40);
-    	spacer.setPrefWidth(50);
+    	
+    	spacer.setPrefWidth(50);    	
     	leftSpacer.setPrefWidth(36);
     	controlBox.getChildren().addAll(leftSpacer,lblDeck, spacer, btnExit,musicBox, rulebtn, 
-    			decreasePlayer, addPlayer, btnFs, btnShuffle, btnDeal);
+    													decreasePlayer, addPlayer, btnFs, btnShuffle, btnDeal);
     	controlBox.setSpacing(10);
     	this.setCenter(controlBox);
     

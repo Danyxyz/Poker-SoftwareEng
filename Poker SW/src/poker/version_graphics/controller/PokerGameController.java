@@ -22,24 +22,26 @@ public class PokerGameController {
 	private PokerGameView view;
 	private CardLabel lbl;
 	private PlayerPane pp;
-	public static int winCountp1 = 0;
-	public static int winCountp2 = 0;
-	public static int winCountp3 = 0;
-	public static int winCountp4 = 0;
+	
+	//initialize wincounters to set win labels after
+	public int winCountp1 = 0;
+	public int winCountp2 = 0;
+	public int winCountp3 = 0; 
+	public int winCountp4 = 0;
 	
 	public PokerGameController(PokerGameModel model, PokerGameView view) {
 		this.model = model;
 		this.view = view;
 		
-		view.getShuffleButton().setOnAction( e -> shuffle() );		
-		view.getDealButton().setOnAction( e -> deal()); 				
-		view.getExitButton().setOnAction(e -> System.exit(0)); 				
-		view.getFSButton().setOnAction(e -> view.getStage().setFullScreen(true));
-		view.getAddPlayerBtn().setOnAction(e -> increasePlayer());
-		view.getDecreaseButton().setOnAction(e -> decreasePlayer());
-		view.getRuleButton().setOnAction(e -> RuleWindow.display("Rules"));
-		view.getChangeMusicButton().setOnAction(e -> view.updateMusic("res//Take_Ten.wav"));
-		view.getStopMusicButton().setOnAction(e -> view.stopMusic());
+		view.getShuffleButton().setOnAction( e -> shuffle() ); //shuffle cards
+		view.getDealButton().setOnAction( e -> deal()); //deal cards	
+		view.getExitButton().setOnAction(e -> System.exit(0)); //close game
+		view.getFSButton().setOnAction(e -> view.getStage().setFullScreen(true)); //sets screen to fullscreen
+		view.getAddPlayerBtn().setOnAction(e -> increasePlayer()); //add player
+		view.getDecreaseButton().setOnAction(e -> decreasePlayer()); //remove player
+		view.getRuleButton().setOnAction(e -> RuleWindow.display("Rules")); //show rules
+		view.getChangeMusicButton().setOnAction(e -> view.updateMusic("res//Take_Ten.wav")); //change song
+		view.getStopMusicButton().setOnAction(e -> view.stopMusic()); //stop music
 	}
 	
 
@@ -53,10 +55,17 @@ public class PokerGameController {
     		p.discardHand();
     		PlayerPane pp = view.getPlayerPane(i);
     		pp.updatePlayerDisplay();
+    		pp.gamesWon.setText("-");
     	}
-
+    	// reset the win labels
+    	winCountp1 = 0;
+    	winCountp2 = 0;
+    	winCountp3 = 0;
+    	winCountp4 = 0;
     	model.getDeck().shuffle();
-		pp.gamesWon.setText("-");	 //reset Gameswon label
+    	
+    
+	
     }
     
     /**
@@ -88,25 +97,28 @@ public class PokerGameController {
     			switch (number) {
     			case 1:
     			winCountp1++;
-    			pp = view.getPlayerPane(i);
+    			pp = view.getPlayerPane(number-1);
     			pp.gamesWon.setText(Integer.toString(winCountp1));
     			break;
     		
     			case 2:
     			winCountp2++;
-    			pp = view.getPlayerPane(i);
+    			pp = view.getPlayerPane(number-1);
     			pp.gamesWon.setText(Integer.toString(winCountp2));
     			break;
     			
     			case 3:
-				winCountp1++;
-				pp = view.getPlayerPane(i);
+				winCountp3++;
+				pp = view.getPlayerPane(number-1);
 				pp.gamesWon.setText(Integer.toString(winCountp3));
+    			break;
     			
     			case 4:
-    			winCountp1++;
-    			pp = view.getPlayerPane(i);
+    			winCountp4++;
+    			pp = view.getPlayerPane(number-1);
     			pp.gamesWon.setText(Integer.toString(winCountp4));
+    			break;
+    			
     			}
     		}
     	} else {
@@ -144,4 +156,5 @@ public class PokerGameController {
      	this.updateDisplay();	
     }
     }
+   
 }

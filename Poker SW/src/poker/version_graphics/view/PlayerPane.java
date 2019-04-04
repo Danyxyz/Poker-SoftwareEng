@@ -72,5 +72,6 @@ public class PlayerPane extends VBox {
     			lblEvaluation.setText("--");
     	}
     }
+
     }
 
